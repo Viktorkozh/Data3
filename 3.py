@@ -1,6 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+# Самостоятельно изучите работу с пакетом click для построения интерфейса
+# командной строки (CLI). Для своего варианта лабораторной работы 2.16
+# необходимо реализовать интерфейс командной строки с использованием пакета click.
+
 import os
 import click
 import json
@@ -147,6 +151,7 @@ def cli(ctx, filename):
     ctx.ensure_object(dict)
     ctx.obj['FILENAME'] = filename
 
+
 @cli.command()
 @click.option('-n', '--name', required=True, help="Имя человека")
 @click.option('-s', '--surname', required=True, help="Фамилия человека")
@@ -159,12 +164,14 @@ def add(ctx, name, surname, date_of_birth, zodiac_sign):
     people = add_person(people, name, surname, date_of_birth, zodiac_sign)
     save_people(ctx.obj['FILENAME'], people)
 
+
 @cli.command()
 @click.pass_context
 def list(ctx):
     """Вывести список людей."""
     people = load_people(ctx.obj['FILENAME'])
     list_people(people)
+
 
 @cli.command()
 @click.option('-m', '--month', required=True, type=int, help="Месяц рождения")
@@ -173,6 +180,7 @@ def select(ctx, month):
     """Выбрать людей по месяцу рождения."""
     people = load_people(ctx.obj['FILENAME'])
     select_people(people, month)
+
 
 if __name__ == '__main__':
     cli(obj={})

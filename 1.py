@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+# Для примера 1 лабораторной работы 2.16 разработайте интерфейс командной строки.
+
 import argparse
 import json
 import os.path
